@@ -1,0 +1,125 @@
+1: i create the folder called my api
+2: from here i went to VS code.
+
+		within the index folder this file is contained. 
+
+
+		const express = require("express");
+			const app = express();
+
+				app.use(express.json());
+
+				app.get("/", (req, res) => {
+ 				 res.send("🚀 API is running");
+								});
+
+				app.get("/api/hello", (req, res) => {
+ 				 res.json({ message: "Hello from your API 👋" });
+										});
+
+				app.post("/api/data", (req, res) => {
+  					res.json({ status: "success", receivedData: req.body });
+												});
+
+				const PORT = 3000;
+				app.listen(PORT, () => console.log(`Server running on http://localhost:3000`));
+
+3: I installed node.js 
+4: opened terminal in VS wanted to test if the api worked and i had few errors typing in 
+
+
+cd "C:\Users\USER-PC\OneDrive\Desktop\API Build 1\my-api" (pasting this to powershell to find location of the my-api)
+
+
+Folder Structure
+====================================================================
+
+API Build 1/
+└── my-api/
+    ├── index.js          # Main server file
+    └── package.json      # Node.js project config
+
+===================================================================
+
+Dependencies
+
+Node.js → JavaScript runtime to run the server.
+Express.js → Web framework to handle HTTP requests 
+
+
+installed with: npm install express
+
+==================================================================
+
+javascript file within VS 
+
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.use(express.json());
+
+// GET endpoint
+app.get('/api/hello', (req, res) => {
+  res.json({ message: "Hello from your API 👋" });
+});
+
+// POST endpoint
+app.post('/api/data', (req, res) => {
+  const receivedData = req.body;
+  res.json({ status: "success", receivedData });
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
+});
+==================================================================
+
+Running the API 
+1.Open VS Code.
+2.Open PowerShell terminal in VS Code.
+3.Navigate to your project folder:
+
+then i ran this code " cd "C:\Users\USER-PC\OneDrive\Desktop\API Build 1\my-api"   
+
+tart the server with this >> & "C:\Program Files\nodejs\node.exe" index.js
+
+==================================================================
+The testing of the API 
+
+1. Get request :  curl http://localhost:3000/api/hello
+
+then i got this response >> {"message":"Hello from your API 👋"}
+==================================================================
+
+POST  request (All in powershell)
+
+Invoke-RestMethod -Method POST -Uri http://localhost:3000/api/data -Body '{ "name": "Khanya", "goal": "Build APIs" }' -ContentType "application/json"
+
+then the response was 
+
+{
+  "status": "success",
+  "receivedData": {
+    "name": "Khanya",
+    "goal": "Build APIs"
+  }
+}
+
+=====================================================================
+Key Notes
+
+The server must be running in one terminal to accept requests.
+
+Use a new terminal to send GET/POST requests.
+
+Invoke-RestMethod → PowerShell command to test POST requests.
+
+curl → Command for GET requests.
+
+API endpoints:
+
+GET /api/hello → Returns a hello message
+
+POST /api/data → Receives JSON data and returns it
